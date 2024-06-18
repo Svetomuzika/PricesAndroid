@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="PricesAndroid.AppShell"
+       xmlns:views="clr-namespace:PricesAndroid.Views" 
+       xmlns:pricesandroid="clr-namespace:PricesAndroid" 
+       x:DataType="pricesandroid:AppShell"
+       Shell.NavBarIsVisible="False">
+
+    <TabBar>
+        <ShellContent x:Name="Requests" 
+                      Title="Мои Заявки"
+                      Shell.TabBarUnselectedColor="#82879F"
+                      Shell.TabBarTitleColor="Black"
+                      Icon="icon_requests.png"/>
+        <ShellContent x:Name="Estimation" 
+                      Title="Расчет"
+                      Shell.TabBarUnselectedColor="#82879F"
+                      Shell.TabBarTitleColor="Black"
+                      Icon="icon_estimation.png"/>
+        <ShellContent x:Name="Profile" 
+                      Title="Профиль"
+                      Shell.TabBarUnselectedColor="#82879F"
+                      Shell.TabBarTitleColor="Black"
+                      Icon="icon_profile.png"/>
+    </TabBar>
+</Shell>

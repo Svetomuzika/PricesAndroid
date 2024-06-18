@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="PricesAndroid.Views.UserProfilePage">
+    
+    <ScrollView>
+        <StackLayout Padding="21"
+                     Spacing="0"
+                     BackgroundColor="{StaticResource LightThemeBackgroundColor}">
+            <Grid Margin="0, 0, 0, 30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Профиль" 
+                       Grid.Column="0"
+                       FontSize="32" 
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource LightThemeTextColor}"/>
+                <ImageButton Source="icon_logout.png"
+                             Grid.Column="1"
+                             HeightRequest="25"
+                             BackgroundColor="White"
+                             HorizontalOptions="End"/>
+            </Grid>
+            
+            <Label Text="ФИО"
+                   FontSize="16"
+                   Margin="0, 0, 0, 10"
+                   TextColor="{StaticResource HeadlinesColor}"/>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 10">
+                <Label Text="{Binding User.FullName}"
+                       VerticalTextAlignment="Center"
+                       LineBreakMode="TailTruncation"
+                       FontSize="18"
+                       TextColor="{StaticResource LightThemeTextColor}"/>
+            </Frame>
+
+            <Label Text="Телефон"
+                   FontSize="16"
+                   Margin="0, 0, 0, 10"
+                   TextColor="{StaticResource HeadlinesColor}"/>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 10">
+                <Label Text="{Binding User.PhoneNumber}"
+                       VerticalTextAlignment="Center"
+                       FontSize="18"
+                       TextColor="{StaticResource LightThemeTextColor}"/>
+            </Frame>
+
+            <Label Text="Почта"
+                   FontSize="16"
+                   Margin="0, 0, 0, 10"
+                   TextColor="{StaticResource HeadlinesColor}"/>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 10">
+                <Label Text="{Binding User.Email}"
+                       VerticalTextAlignment="Center"
+                       LineBreakMode="TailTruncation"
+                       FontSize="18"
+                       TextColor="{StaticResource LightThemeTextColor}"/>
+            </Frame>
+
+            <Label Text="Организация"
+                   FontSize="16"
+                   Margin="0, 0, 0, 10"
+                   TextColor="{StaticResource HeadlinesColor}"/>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 10">
+                <Label Text="{Binding User.Company}"
+                       VerticalTextAlignment="Center"
+                       LineBreakMode="TailTruncation"
+                       FontSize="18"
+                       TextColor="{StaticResource LightThemeTextColor}"/>
+            </Frame>
+
+            <Label Text="ИНН"
+                   FontSize="16"
+                   Margin="0, 0, 0, 10"
+                   TextColor="{StaticResource HeadlinesColor}"/>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 10">
+                <Label Text="{Binding User.INN}"
+                       VerticalTextAlignment="Center"
+                       FontSize="18"
+                       TextColor="{StaticResource LightThemeTextColor}"/>
+            </Frame>
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

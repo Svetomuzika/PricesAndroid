@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PricesAndroid.App">
+    <Application.Resources>
+        
+        <!-- Colors -->
+        <Color x:Key="LightThemeBackgroundColor">White</Color>
+        <Color x:Key="LightThemeTextColor">Black</Color>
+        <Color x:Key="DarkThemeBackgroundColor">#171717</Color>
+        <Color x:Key="DarkThemeTextColor">White</Color>
+        <Color x:Key="StarColor">#FF3D3D</Color>
+        <Color x:Key="HeadlinesColor">#82879F</Color>
+        <Color x:Key="BoxesColor">#E7E9F2</Color>
+        <Color x:Key="MainThemeColor">#F62933</Color>
+
+        <!-- Status Colors-->
+        <Color x:Key="DoneStatusColor">#68C76C</Color>
+        <Color x:Key="CreatedStatusColor">#FF3D3D</Color>
+        <Color x:Key="InProgressStatusColor">#FF8E3D</Color>
+
+        <!-- ButtonStyle -->
+        <Style TargetType="Button">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#F62933" />
+                                <Setter Property="TextColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#FB999D" />
+                                <Setter Property="TextColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+    </Application.Resources>
+</Application>

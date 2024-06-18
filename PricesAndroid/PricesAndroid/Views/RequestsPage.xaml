@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:PricesAndroid.Utilities.Converters;assembly=PricesAndroid"
+             x:Class="PricesAndroid.Views.RequestsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StatusToVisibleConverter x:Key="statusToVisible"/>
+            <converters:ContainerWeightConverter x:Key="weightConverter"/>
+            <converters:RequestPriceConverter x:Key="reqPriceConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="21, 20, 21, 0"
+                 Spacing="0"
+                 BackgroundColor="{StaticResource LightThemeBackgroundColor}">
+        <Label Text="Мои заявки" 
+               FontSize="32" 
+               FontAttributes="Bold"
+               Margin="0, 0, 0, 30"
+               TextColor="{StaticResource LightThemeTextColor}"/>
+
+        <Frame BorderColor="{StaticResource BoxesColor}"
+               CornerRadius="10"
+               Padding="0, 0"
+               HasShadow="False"
+               HeightRequest="49"
+               Margin="0, 0, 0, 20">
+            <SearchBar Text="{Binding SearchQuery}"
+                       FontSize="16"
+                       Placeholder="Поиск по любому полю"/>
+        </Frame>
+
+        <CollectionView x:Name="RequestsListView"
+                        SelectionMode="Single"
+                        ItemsSource="{Binding RequestsList}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10"
+                                   Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout BackgroundColor="White">
+                        <Frame BorderColor="{StaticResource BoxesColor}"
+                               CornerRadius="5"
+                               Padding="25, 25, 0, 0"
+                               HasShadow="False">
+                            <StackLayout Spacing="0">
+                                <Label FontSize="20"
+                                       Margin="0, 0, 0, 5"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource LightThemeTextColor}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="Заявка № "/>
+                                                <Span Text="{Binding RequestNumber}"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Frame BackgroundColor="{StaticResource DoneStatusColor}"
+                                       HeightRequest="24"
+                                       WidthRequest="103"
+                                       HorizontalOptions="Start"
+                                       HasShadow="False"
+                                       CornerRadius="7"
+                                       IsVisible="{Binding Path=Status, Converter={StaticResource statusToVisible}, ConverterParameter=Done}"
+                                       Padding="0"
+                                       Margin="0, 0, 0, 20">
+                                    <Label Text="Выполнено"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
+                                </Frame>
+
+                                <Frame BackgroundColor="{StaticResource InProgressStatusColor}"
+                                       HeightRequest="24"
+                                       WidthRequest="103"
+                                       HorizontalOptions="Start"
+                                       HasShadow="False"
+                                       CornerRadius="7"
+                                       IsVisible="{Binding Path=Status, Converter={StaticResource statusToVisible}, ConverterParameter=InProgress}"
+                                       Padding="0"
+                                       Margin="0, 0, 0, 20">
+                                    <Label Text="В работе"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
+                                </Frame>
+
+                                <Frame BackgroundColor="{StaticResource CreatedStatusColor}"
+                                       HeightRequest="24"
+                                       WidthRequest="103"
+                                       HorizontalOptions="Start"
+                                       HasShadow="False"
+                                       CornerRadius="7"
+                                       IsVisible="{Binding Path=Status, Converter={StaticResource statusToVisible}, ConverterParameter=Created}"
+                                       Padding="0"
+                                       Margin="0, 0, 0, 20">
+                                    <Label Text="Создана"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
+                                </Frame>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                           Margin="0, 0, 0, 10"
+                                           TextColor="{StaticResource LightThemeTextColor}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="{Binding DepartureCity}"/>
+                                                    <Span Text=" -> "
+                                                          FontAttributes="Bold"/>
+                                                    <Span Text="{Binding ArrivalCity}"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                           Margin="0, 0, 0, 10"
+                                           TextColor="{StaticResource LightThemeTextColor}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="{Binding ContainerSize}"/>
+                                                    <Span Text=" футов"/>
+                                                    <Span Text=" | "
+                                                          FontAttributes="Bold"/>
+                                                    <Span Text="{Binding CargoWeight, Converter={StaticResource weightConverter}}"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                           Margin="0, 0, 0, 10"
+                                           TextColor="{StaticResource LightThemeTextColor}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Стоимость: "/>
+                                                    <Span Text="{Binding Price, Converter={StaticResource reqPriceConv}}"/>
+                                                    <Span Text=" руб."/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="15"
+                                           Margin="0, 0, 0, 10"
+                                           TextColor="{StaticResource LightThemeTextColor}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Дата отправления: "/>
+                                                    <Span Text="{Binding DepartureDate}"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="End">
+                                    <Label FontSize="15"
+                                           Margin="0, 0, 12, 12"
+                                           TextColor="{StaticResource HeadlinesColor}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="от "/>
+                                                    <Span Text="{Binding RequestCreateDate}"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

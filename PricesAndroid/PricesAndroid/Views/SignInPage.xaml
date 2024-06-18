@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:PricesAndroid.TetraControls;assembly=PricesAndroid"
+             x:Class="PricesAndroid.Views.SignInPage">
+    <StackLayout>
+        <Label Text="Почта"
+               FontSize="16"
+               Margin="0, 0, 0, 10"
+               TextColor="{StaticResource HeadlinesColor}"/>
+        <Frame BorderColor="{StaticResource BoxesColor}"
+               CornerRadius="5"
+               Padding="28, 0"
+               HasShadow="False"
+               HeightRequest="49"
+               Margin="0, 0, 0, 10">
+            <custom:TetraEntry Text="{Binding CargoWeight}"
+                               FontSize="16"
+                               Keyboard="Email"
+                               ClearButtonVisibility="WhileEditing"/>
+        </Frame>
+
+        <Label Text="Пароль"
+               FontSize="16"
+               Margin="0, 0, 0, 10"
+               TextColor="{StaticResource HeadlinesColor}"/>
+        <Frame BorderColor="{StaticResource BoxesColor}"
+               CornerRadius="5"
+               Padding="28, 0"
+               HasShadow="False"
+               HeightRequest="49"
+               Margin="0, 0, 0, 10">
+            <custom:TetraEntry Text="{Binding CargoWeight}"
+                               FontSize="16"
+                               IsPassword="True"
+                               ClearButtonVisibility="WhileEditing"/>
+        </Frame>
+
+    </StackLayout>
+</ContentPage>

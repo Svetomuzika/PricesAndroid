@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PricesAndroid.ViewModels;assembly=PricesAndroid"
+             xmlns:custom="clr-namespace:PricesAndroid.TetraControls;assembly=PricesAndroid"
+             xmlns:converters="clr-namespace:PricesAndroid.Utilities.Converters;assembly=PricesAndroid"
+             x:Class="PricesAndroid.Views.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TotalPriceConverter x:Key="priceConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding="21"
+                     Spacing="0"
+                     x:DataType="viewModels:MainViewModel"
+                     BackgroundColor="{StaticResource LightThemeBackgroundColor}">
+            <Label Text="Расчет" 
+                   FontSize="32" 
+                   FontAttributes="Bold"
+                   Margin="0, 0, 0, 30"
+                   TextColor="{StaticResource LightThemeTextColor}"/>
+
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, 0, 0, 20">
+                <Label Text="*"
+                       FontSize="16"
+                       TextColor="{StaticResource StarColor}"/>
+                <Label Text="Вид контейнера"
+                       FontSize="16"
+                       TextColor="{StaticResource HeadlinesColor}"/>
+            </StackLayout>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 20">
+                <custom:TetraPicker SelectedItem="{Binding ContainerSize}"
+                                    FontSize="16">
+                    <Picker.Items>
+                        <x:String>20 футов</x:String>
+                        <x:String>40 футов</x:String>
+                    </Picker.Items>
+                </custom:TetraPicker>
+            </Frame>
+
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, 0, 0, 20">
+                <Label Text="*"
+                       FontSize="16"
+                       TextColor="{StaticResource StarColor}"/>
+                <Label Text="Вес груза (т)"
+                       FontSize="16"
+                       TextColor="{StaticResource HeadlinesColor}"/>
+            </StackLayout>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 36">
+                <custom:TetraEntry Text="{Binding CargoWeight}"
+                       FontSize="16"
+                       Keyboard="Numeric"
+                       ClearButtonVisibility="WhileEditing"/>
+            </Frame>
+
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, 0, 0, 20">
+                <Label Text="*"
+                       FontSize="16"
+                       TextColor="{StaticResource StarColor}"/>
+                <Label Text="Пункт отправления"
+                       FontSize="16"
+                       TextColor="{StaticResource HeadlinesColor}"/>
+            </StackLayout>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   BackgroundColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 36">
+                
+                <custom:TetraEntry Text="{Binding DepartureCity}"
+                       FontSize="16"
+                       TextColor="#5E5E5E"
+                       IsReadOnly="True"/>
+            </Frame>
+
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, 0, 0, 20">
+                <Label Text="*"
+                       FontSize="16"
+                       TextColor="{StaticResource StarColor}"/>
+                <Label Text="Пункт назначения"
+                       FontSize="16"
+                       TextColor="{StaticResource HeadlinesColor}"/>
+            </StackLayout>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="0, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 3">
+                <SearchBar Text="{Binding ArrivalCity}"
+                           Keyboard="Text"
+                           FontSize="16"/>
+            </Frame>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   HasShadow="False"
+                   Padding="0"
+                   Margin="0, 0, 0, 36">
+                <ListView ItemsSource="{Binding SearchResults}"
+                      SelectedItem="{Binding ArrivalCity}"
+                      SeparatorColor="#82879F"
+                      HeightRequest="{Binding ListHeight}">
+                </ListView>
+            </Frame>
+
+            <StackLayout Orientation="Horizontal"
+                         Margin="0, 0, 0, 20">
+                <Label Text="*"
+                       FontSize="16"
+                       TextColor="{StaticResource StarColor}"/>
+                <Label Text="Дата отправления"
+                       FontSize="16"
+                       TextColor="{StaticResource HeadlinesColor}"/>
+            </StackLayout>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   HeightRequest="49"
+                   Margin="0, 0, 0, 36">
+                <custom:TetraDatePicker Date="{Binding DepartureDate}"
+                            FontSize= "16"
+                            MinimumDate="{Binding MinimumDate}"
+                            Format="dd.MM.yyyy"/>
+            </Frame>
+
+            <Label Text="Комментарий"
+                   FontSize="16"
+                   Margin="0, 0, 0, 20"
+                   TextColor="{StaticResource HeadlinesColor}"/>
+            <Frame BorderColor="{StaticResource BoxesColor}"
+                   CornerRadius="5"
+                   Padding="28, 0"
+                   HasShadow="False"
+                   Margin="0, 0, 0, 30">
+                <custom:TetraEditor Text="{Binding Comment}"
+                        HeightRequest="120"
+                        Keyboard="Text"
+                        FontSize="16"/>
+            </Frame>
+
+            <Label FontSize="16"
+                   Padding="87, 0, 0, 0"
+                   Margin="0, 0, 0, 20"
+                   CharacterSpacing="20"
+                   TextColor="{StaticResource LightThemeTextColor}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="СТОИМОСТЬ:   "/>
+                            <Span x:Name="PriceValue"
+                                  Text="{Binding TotalPrice, Converter={StaticResource priceConv}}"/>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Button FontSize="20"
+                    Text="Создать заявку"
+                    TextColor="White"
+                    Command="{Binding CreateRequestCommand}"
+                    TextTransform="None"
+                    HeightRequest="49"
+                    CornerRadius="5"
+                    IsEnabled="{Binding IsEnabledButton}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
